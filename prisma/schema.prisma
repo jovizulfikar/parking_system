@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Log {
+  id          String      @id @default(uuid())
+  vehicleType VehicleType @map("vehicle_type")
+  enteredAt   DateTime    @map("entered_at")
+  exitedAt    DateTime    @map("exited_at")
+  price       Float
+
+  @@map("logs")
+}
+
+enum VehicleType {
+  motorcycle
+  car
+}
